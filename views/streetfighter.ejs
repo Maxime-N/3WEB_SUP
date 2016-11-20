@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>StreetFighter</title>
+	<meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="styles/main.css">
+
+  <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      #messages { width: 50%; float: right;}
+      #form { padding-top: 40%; padding-left: 50%;}
+      #form input { width: 500px;}
+    </style>
+
+</head>
+
+<body ng-app>
+        <div class="game">
+          <div class="fight_zone" id="perso">
+
+            <div class="name_life_time">
+
+              <div class="nameJ1" id="name_J1"></div>
+              <div class="lifeJ1">           
+              </div>
+              <div class="special_attackJ1">           
+              </div>
+
+              <div class="nameJ2" id="name_J2"></div>
+              <div class="lifeJ2">           
+              </div>
+              <div class="special_attackJ2">           
+              </div>
+
+              <div class="time">           
+              </div>
+
+            </div>              
+            
+          </div>
+     
+          <div class="commandes">
+            <p>Commandes:<br>
+            ->: Droite | <-: Gauche | fleche bas: Accroupi | Z: défense <br> 
+            fleche haut : Saut base | fleche haut + ->: Saut avant | D: coup poing<br>
+             E: coup pied | S: Super Coup | R: Simulation coup reçu 
+            </p>
+          </div>
+
+        </div>
+
+        
+        <ul id="messages"></ul>
+        <div id="form">
+          <input id="m" autocomplete="off" /><button id="send">Send</button>
+        </div>
+
+      <script src="lib/angular.min.js"></script>
+      <script src="lib/socket.io.js"></script>
+      <script src="js/streetfighter.js"></script>
+      <script src="js/ken.js"></script>
+      <script src="js/ryu.js"></script>
+      <!-- //<script src="http://code.jquery.com/jquery-1.11.1.js"></script> -->
+
+    <script>
+    var socket = io();
+    var e_chat = document.getElementById("messages");
+
+    document.getElementById("send").onclick = function() { 
+        socket.emit('chat message', document.getElementById('m').value);
+        document.getElementById('m').value = '';
+        return false;
+     };
+     socket.on('chat message', function(msg){
+          e_chat.innerHTML += "<li>" + msg + "</li>";
+        });
+
+    </script>
+    
+</body>
+
+</html>

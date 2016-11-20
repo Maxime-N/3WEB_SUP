@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>StreetFighter</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+	<form class="form-signin" action="/login" method="POST">
+		<input type="text" name="username" placeholder="Username" required autofocus>
+		<input type='password' name='password' placeholder='Password' required>
+		<button type='submit'>Sign in</button>
+
+		<a href="/signup">Create an account</a>
+	</form>
+
+	<script src="lib/angular.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="lib/socket.io.js"></script>
+	<script src="js/streetfighter.js"></script>
+	<script src="js/ken.js"></script>
+	<script src="js/ryu.js"></script>
+</body>
+
+</html>
